@@ -1,0 +1,31 @@
+import { useNavigate } from 'react-router'
+import URL from '../../Pages/URL/Url'
+import './Item.css'
+
+export default function Item(props) {
+    const { itemComp } = props
+    // let id = itemComp.itemid
+    const navigate = useNavigate()
+
+    let string = `${URL}itemImage/item/${itemComp.itemid}`
+    return (
+        <div className='col-md-4 col-sm-6'>
+            <div className="itembox shadow">
+                <div class="card">
+                    <img src={string} class="card-img-top" alt="Item Image" style={{minHeight:"300px"}}/>
+                    <div className="card-body">
+                        <h5 className="card-title">{itemComp.itemName}</h5>
+                        <p className="card-text">{itemComp.type}</p>
+                        <p className="card-text">{itemComp.description}...</p>
+                        <a className="btn btn-primary"
+                            onClick={() => {
+                                navigate('/itemSize', { state: { itemid: itemComp.itemid } })
+                            }}
+                        >View Details</a>
+                    </div>
+                </div>
+            </div>
+            <br />
+        </div>
+    )
+}
